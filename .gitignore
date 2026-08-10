@@ -1,0 +1,10 @@
+/target
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Qt/QML
+*.qmlc
+*.jsc
