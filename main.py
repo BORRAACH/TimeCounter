@@ -1,19 +1,22 @@
 import sys
 from pathlib import Path
 
-from PySide6.QtGui import QFont, QGuiApplication
+from PySide6.QtGui import QFont, QFontDatabase, QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine
 
 from theme import Theme
 from weeks import Weeks
 
-QML_FILE = Path(__file__).parent / "qml" / "Main.qml"
+BASE_DIR = Path(__file__).parent
+QML_FILE = BASE_DIR / "qml" / "Main.qml"
 
 
 def main() -> int:
     app = QGuiApplication(sys.argv)
     app.setOrganizationName("time-counter")
     app.setApplicationName("Time Counter")
+    for font in (BASE_DIR / "fonts").glob("*.ttf"):
+        QFontDatabase.addApplicationFont(str(font))
     # Matches .config/quickshell/caelestia's appearance.font.family.sans.
     app.setFont(QFont("Rubik"))
 
