@@ -5,6 +5,7 @@ from PySide6.QtGui import QFont, QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine
 
 from theme import Theme
+from weeks import Weeks
 
 QML_FILE = Path(__file__).parent / "qml" / "Main.qml"
 
@@ -17,9 +18,11 @@ def main() -> int:
     app.setFont(QFont("Rubik"))
 
     theme = Theme()
+    weeks = Weeks()
 
     engine = QQmlApplicationEngine()
     engine.rootContext().setContextProperty("Theme", theme)
+    engine.rootContext().setContextProperty("Weeks", weeks)
     engine.load(QML_FILE)
 
     if not engine.rootObjects():
